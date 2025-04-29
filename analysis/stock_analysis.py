@@ -10,7 +10,7 @@ from scipy.signal import argrelextrema
 
 def get_historical_data(alice, token, from_date, to_date, interval="D"):
     """Fetch historical data and return as a DataFrame."""
-    instrument = alice.get_instrument_by_token('BSE', token)
+    instrument = alice.get_instrument_by_token('BSE (1)', token)
     historical_data = alice.get_historical(instrument, from_date, to_date, interval)
     df = pd.DataFrame(historical_data).dropna()
     return instrument, df
