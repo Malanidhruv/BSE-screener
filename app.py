@@ -80,7 +80,7 @@ def safe_display(df, title):
     else:
         st.markdown(f"## {title}")
         if "Name" in df.columns:
-            df["Name"] = df["Name"].apply(lambda x: f'<a href="https://in.tradingview.com/chart?symbol=NSE%3A{x}" target="_blank">{x}</a>')
+            df["Name"] = df["Name"].apply(lambda x: f'<a href="https://in.tradingview.com/chart?symbol=BSE%3A{x}" target="_blank">{x}</a>')
         st.markdown(df.to_html(escape=False), unsafe_allow_html=True)
 
 
