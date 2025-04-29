@@ -4,7 +4,7 @@ import json
 
 def generate_tradingview_link(stock_name):
     """Generate a TradingView link for a given stock."""
-    return f'<a href="https://in.tradingview.com/chart?symbol=NSE%3A{stock_name}" target="_blank">{stock_name}</a>'
+    return f'<a href="https://in.tradingview.com/chart?symbol=BSE%3A{stock_name}" target="_blank">{stock_name}</a>'
 
 def print_stocks_up(stocks):
     """Prints the stocks that gained 3-5% in descending order with TradingView links."""
@@ -27,7 +27,7 @@ def print_stocks_up(stocks):
     print('-' * 50)
 
     for stock in stocks_sorted:
-        link = f"https://in.tradingview.com/chart?symbol=NSE%3A{stock['Name']}"
+        link = f"https://in.tradingview.com/chart?symbol=BSE%3A{stock['Name']}"
         print(f"{stock['Name']:<20} {stock['Token']:<10} {stock['Close']:<10.2f} {stock['Change (%)']:<10.2f}  {link}")
     
     print('-' * 50)
@@ -53,7 +53,7 @@ def print_stocks_down(stocks):
     print('-' * 50)
 
     for stock in stocks_sorted:
-        link = f"https://in.tradingview.com/chart?symbol=NSE%3A{stock['Name']}"
+        link = f"https://in.tradingview.com/chart?symbol=BSE%3A{stock['Name']}"
         print(f"{stock['Name']:<20} {stock['Token']:<10} {stock['Close']:<10.2f} {stock['Change (%)']:<10.2f}  {link}")
     
     print('-' * 50)
