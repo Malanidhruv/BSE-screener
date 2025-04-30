@@ -48,45 +48,6 @@ def cluster_zones(zones, prices, tolerance_factor=0.3):
     return clusters
 
 
-# -------------------- Price Change Functions -------------------- #
-
-def fetch_stock_data_change(alice, token, direction="up"):
-    """
-    Fetch historical data and check if the stock's change meets the target conditions.
-    For 'up', checks for a 3% or more gain.
-    For 'down', checks for a 3% or more loss (negative).
-    """
-    try:
-        instrument, df = get_historical_data(
-            alice, token, datetime.now() - timedelta(days=5), datetime.now(), interval="D"
-        )
-        if len(df) < 2:
-            return None  # Not enough data
-
-        yesterday_close = df['close'].iloc[-1]
-        day_before_close = df['close'].iloc[-2]
-        pct_change = ((yesterday_close - day_before_close) / day_before_close) * 100
-
-        if direction == "up" and pct_change >= 3:  # 3% or more up
-            return {
-                'Name': instrument.name,
-                'Token': token,
-                'Close': yesterday_close,
-                'Change (%)': pct_change
-            }
-        elif direction == "down" and pct_change <= -3:  # 3% or more down
-            return {
-                'Name': instrument.name,
-                'Token': token,
-                'Close': yesterday_close,
-                'Change (%)': pct_change
-            }
-    except Exception as e:
-        print(f"Error processing token {token}: {e}")
-    return None
-
-
-
 # -------------------- Analysis Functions -------------------- #
 
 def analyze_stock_bearish(alice, token):
